@@ -4,9 +4,9 @@ public class PalindromeCheckerApp {
 
         String input = "madam";
 
-        PalindromeService service = new PalindromeService();
+        PalindromeStrategy strategy = new SimplePalindromeStrategy();
 
-        boolean result = service.checkPalindrome(input);
+        boolean result = strategy.isPalindrome(input);
 
         if (result) {
             System.out.println(input + " is a palindrome");
@@ -18,9 +18,15 @@ public class PalindromeCheckerApp {
 
 }
 
-class PalindromeService {
+interface PalindromeStrategy {
 
-    public boolean checkPalindrome(String input) {
+    boolean isPalindrome(String input);
+
+}
+
+class SimplePalindromeStrategy implements PalindromeStrategy {
+
+    public boolean isPalindrome(String input) {
 
         int start = 0;
         int end = input.length() - 1;
