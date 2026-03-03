@@ -2,31 +2,11 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "level";
 
-        PalindromeStrategy strategy = new SimplePalindromeStrategy();
+        long startTime = System.nanoTime();
 
-        boolean result = strategy.isPalindrome(input);
-
-        if (result) {
-            System.out.println(input + " is a palindrome");
-        } else {
-            System.out.println(input + " is not a palindrome");
-        }
-
-    }
-
-}
-
-interface PalindromeStrategy {
-
-    boolean isPalindrome(String input);
-
-}
-
-class SimplePalindromeStrategy implements PalindromeStrategy {
-
-    public boolean isPalindrome(String input) {
+        boolean isPalindrome = true;
 
         int start = 0;
         int end = input.length() - 1;
@@ -34,7 +14,8 @@ class SimplePalindromeStrategy implements PalindromeStrategy {
         while (start < end) {
 
             if (input.charAt(start) != input.charAt(end)) {
-                return false;
+                isPalindrome = false;
+                break;
             }
 
             start++;
@@ -42,7 +23,13 @@ class SimplePalindromeStrategy implements PalindromeStrategy {
 
         }
 
-        return true;
+        long endTime = System.nanoTime();
+
+        long executionTime = endTime - startTime;
+
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome: " + isPalindrome);
+        System.out.println("Execution Time: " + executionTime + " ns");
 
     }
 
